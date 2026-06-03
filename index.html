@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NovaPay — AI-Powered Privacy-Preserving Autonomous Payment Agent on Stellar. Zero-fee cross-border remittances with autonomous AI agents and selective disclosure privacy.">
+    <title>NovaPay — Autonomous AI Payment Agent on Stellar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" id="nav-logo" data-page="hero">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none">
+                        <circle cx="20" cy="20" r="18" stroke="url(#logoGrad)" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="8" fill="url(#logoGrad)"/>
+                        <path d="M20 2 L20 8 M20 32 L20 38 M2 20 L8 20 M32 20 L38 20" stroke="url(#logoGrad)" stroke-width="1.5" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#6366f1"/>
+                                <stop offset="50%" stop-color="#8b5cf6"/>
+                                <stop offset="100%" stop-color="#06b6d4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="logo-text">NovaPay</span>
+            </a>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-page="hero" id="nav-hero">Home</a>
+                <a href="#" class="nav-link" data-page="dashboard" id="nav-dashboard">Dashboard</a>
+                <a href="#" class="nav-link" data-page="transfer" id="nav-transfer">Transfer</a>
+                <a href="#" class="nav-link" data-page="agent" id="nav-agent">
+                    <span class="nav-badge">AI</span>
+                    Agent
+                </a>
+                <a href="#" class="nav-link" data-page="privacy" id="nav-privacy">
+                    <span class="nav-badge privacy-badge">🛡️</span>
+                    Privacy
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-ghost" id="btn-connect-wallet">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="6" width="20" height="14" rx="3"/>
+                        <path d="M2 10h20"/>
+                        <circle cx="17" cy="15" r="1.5"/>
+                    </svg>
+                    Connect Wallet
+                </button>
+                <div class="wallet-connected" id="wallet-connected" style="display:none;">
+                    <div class="wallet-indicator"></div>
+                    <span id="wallet-address">GXYZ...ABC</span>
+                </div>
+            </div>
+            <button class="nav-hamburger" id="nav-hamburger">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== HERO PAGE ========== -->
+    <section class="page page-hero active" id="page-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge animate-fade-up">
+                    <span class="badge-dot"></span>
+                    Built on Stellar • Powered by AI • Privacy First
+                </div>
+                <h1 class="hero-title animate-fade-up delay-1">
+                    Cross-Border Payments,
+                    <span class="gradient-text">Reimagined</span>
+                </h1>
+                <p class="hero-subtitle animate-fade-up delay-2">
+                    NovaPay is an autonomous AI agent that executes privacy-preserving 
+                    cross-border payments on Stellar — with near-zero fees, instant settlement, 
+                    and selective disclosure compliance.
+                </p>
+                <div class="hero-actions animate-fade-up delay-3">
+                    <button class="btn btn-primary btn-lg" data-page="transfer" id="hero-start-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        Start Transfer
+                    </button>
+                    <button class="btn btn-outline btn-lg" data-page="agent" id="hero-agent-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                        </svg>
+                        Meet the AI Agent
+                    </button>
+                </div>
+
+                <!-- Stats Row -->
+                <div class="hero-stats animate-fade-up delay-4">
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-fee">~0.001¢</span>
+                        <span class="stat-label">Transaction Fee</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-speed">~5s</span>
+                        <span class="stat-label">Settlement Time</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-privacy">100%</span>
+                        <span class="stat-label">Privacy Shield</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Visual -->
+            <div class="hero-visual animate-fade-up delay-2">
+                <div class="hero-card glass-card">
+                    <div class="card-header">
+                        <div class="card-dots">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <span class="card-title-small">AI Agent — Live</span>
+                        <div class="card-pulse"></div>
+                    </div>
+                    <div class="terminal-body" id="hero-terminal">
+                        <div class="terminal-line">
+                            <span class="t-prompt">nova-agent $</span>
+                            <span class="t-cmd">scanning routes...</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="t-info">✓</span>
+                            <span class="t-text">Found 3 optimal corridors</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="t-info">✓</span>
+                            <span class="t-text">Privacy shield: <span class="t-success">ACTIVE</span></span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="t-info">✓</span>
+                            <span class="t-text">Route: USD → XLM → USDC → TRY</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="t-prompt">nova-agent $</span>
+                            <span class="t-cmd typing">executing transfer...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section" id="features">
+            <h2 class="section-title">An <span class="gradient-text">Autonomous</span> Financial Agent</h2>
+            <p class="section-subtitle">Designed specifically for the Hack Agentic track to revolutionize cross-border payments on Stellar.</p>
+            
+            <div class="features-grid">
+                <!-- Market Scanner -->
+                <div class="feature-card glass-card" id="feature-main">
+                    <div class="feature-icon feature-icon-main">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                    </div>
+                    <div class="feature-badge">Market Scanner</div>
+                    <h3>Continuous Monitoring</h3>
+                    <p>The agent constantly monitors all available Stellar DEX pairs and anchor bridges to track liquidity and exchange rates 24/7.</p>
+                </div>
+
+                <!-- Route Optimizer -->
+                <div class="feature-card glass-card featured" id="feature-agentic">
+                    <div class="feature-crown">🤖</div>
+                    <div class="feature-icon feature-icon-agentic">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div class="feature-badge badge-agentic">Route Optimizer</div>
+                    <h3>AI Pathfinding</h3>
+                    <p>Uses advanced algorithms to analyze slippage and fees, discovering the absolute cheapest multi-hop route for any currency pair instantly.</p>
+                </div>
+
+                <!-- Auto Executor -->
+                <div class="feature-card glass-card" id="feature-privacy">
+                    <div class="feature-icon feature-icon-privacy">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                    </div>
+                    <div class="feature-badge badge-privacy">Auto Executor</div>
+                    <h3>Autonomous Execution</h3>
+                    <p>Once optimal conditions are met, the agent autonomously deploys Soroban escrow contracts and executes the transfer without human intervention.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="how-section">
+            <h2 class="section-title">How <span class="gradient-text">NovaPay</span> Works</h2>
+            <div class="steps-timeline">
+                <div class="step-card glass-card">
+                    <div class="step-number">01</div>
+                    <h4>Connect & Verify</h4>
+                    <p>Connect your Stellar wallet. Privacy Shield generates a ZK proof of your compliance — no personal data shared.</p>
+                </div>
+                <div class="step-connector">
+                    <svg width="40" height="24" viewBox="0 0 40 24"><path d="M0 12h36M30 6l6 6-6 6" stroke="url(#connGrad)" stroke-width="2" fill="none" stroke-linecap="round"/><defs><linearGradient id="connGrad" x1="0" y1="0" x2="40" y2="0"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs></svg>
+                </div>
+                <div class="step-card glass-card">
+                    <div class="step-number">02</div>
+                    <h4>AI Finds Best Route</h4>
+                    <p>Our autonomous AI agent scans all available corridors and finds the cheapest, fastest path for your transfer.</p>
+                </div>
+                <div class="step-connector">
+                    <svg width="40" height="24" viewBox="0 0 40 24"><path d="M0 12h36M30 6l6 6-6 6" stroke="url(#connGrad2)" stroke-width="2" fill="none" stroke-linecap="round"/><defs><linearGradient id="connGrad2" x1="0" y1="0" x2="40" y2="0"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs></svg>
+                </div>
+                <div class="step-card glass-card">
+                    <div class="step-number">03</div>
+                    <h4>Instant Settlement</h4>
+                    <p>Funds are transferred via Soroban smart contract escrow. Settlement in ~5 seconds with full transparency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DASHBOARD PAGE ========== -->
+    <section class="page page-dashboard" id="page-dashboard">
+        <div class="dashboard-container">
+            <div class="page-header">
+                <h1>Dashboard</h1>
+                <p>Your NovaPay overview at a glance</p>
+            </div>
+
+            <!-- Balance Cards -->
+            <div class="balance-grid">
+                <div class="balance-card glass-card" id="balance-xlm">
+                    <div class="balance-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v12M6 12h12"/>
+                        </svg>
+                    </div>
+                    <div class="balance-info">
+                        <span class="balance-label">XLM Balance</span>
+                        <span class="balance-value" id="balance-xlm-value">10,000.00</span>
+                        <span class="balance-change positive">+2.4%</span>
+                    </div>
+                </div>
+                <div class="balance-card glass-card" id="balance-usdc">
+                    <div class="balance-icon icon-usdc">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v2m0 8v2M9 10a3 3 0 015.5 1c0 2-3 3-3.5 3"/>
+                        </svg>
+                    </div>
+                    <div class="balance-info">
+                        <span class="balance-label">USDC Balance</span>
+                        <span class="balance-value" id="balance-usdc-value">$1,250.00</span>
+                        <span class="balance-change positive">Stable</span>
+                    </div>
+                </div>
+                <div class="balance-card glass-card" id="balance-savings">
+                    <div class="balance-icon icon-savings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div class="balance-info">
+                        <span class="balance-label">Fees Saved</span>
+                        <span class="balance-value" id="balance-saved-value">$847.32</span>
+                        <span class="balance-change positive">vs. Traditional</span>
+                    </div>
+                </div>
+                <div class="balance-card glass-card" id="balance-agent">
+                    <div class="balance-icon icon-agent">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83"/>
+                        </svg>
+                    </div>
+                    <div class="balance-info">
+                        <span class="balance-label">AI Agent Status</span>
+                        <span class="balance-value agent-active" id="agent-status-dash">Active</span>
+                        <span class="balance-change positive">24/7 Monitoring</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transaction History + Agent Activity -->
+            <div class="dashboard-grid">
+                <div class="glass-card tx-history-card">
+                    <div class="card-top">
+                        <h3>Recent Transactions</h3>
+                        <button class="btn btn-sm btn-ghost">View All</button>
+                    </div>
+                    <div class="tx-list" id="tx-list">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <div class="glass-card agent-feed-card">
+                    <div class="card-top">
+                        <h3>AI Agent Activity</h3>
+                        <div class="agent-pulse-indicator">
+                            <span class="pulse-dot"></span>
+                            Live
+                        </div>
+                    </div>
+                    <div class="agent-feed" id="agent-feed">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy Status -->
+            <div class="glass-card privacy-status-card">
+                <div class="card-top">
+                    <h3>🛡️ Privacy Shield Status</h3>
+                    <span class="privacy-shield-badge active">ACTIVE</span>
+                </div>
+                <div class="privacy-metrics">
+                    <div class="privacy-metric">
+                        <span class="metric-label">Selective Disclosure</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 100%"></div>
+                        </div>
+                        <span class="metric-value">Enabled</span>
+                    </div>
+                    <div class="privacy-metric">
+                        <span class="metric-label">ZK Proof Verifications</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 85%"></div>
+                        </div>
+                        <span class="metric-value">17/20</span>
+                    </div>
+                    <div class="privacy-metric">
+                        <span class="metric-label">Data Exposure Score</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill green" style="width: 5%"></div>
+                        </div>
+                        <span class="metric-value">Minimal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TRANSFER PAGE ========== -->
+    <section class="page page-transfer" id="page-transfer">
+        <div class="transfer-container">
+            <div class="page-header">
+                <h1>Send Money</h1>
+                <p>AI-optimized, privacy-preserving cross-border transfer</p>
+            </div>
+
+            <div class="transfer-grid">
+                <!-- Transfer Form -->
+                <div class="glass-card transfer-form-card">
+                    <div class="transfer-form" id="transfer-form">
+                        <div class="form-group">
+                            <label class="form-label">From</label>
+                            <div class="currency-input">
+                                <select class="currency-select" id="from-currency">
+                                    <option value="USDC">USDC</option>
+                                    <option value="XLM">XLM</option>
+                                    <option value="USD">USD</option>
+                                    <option value="EUR">EUR</option>
+                                </select>
+                                <input type="number" class="amount-input" id="from-amount" placeholder="0.00" value="100">
+                            </div>
+                            <span class="form-hint">Available: <span id="available-balance">1,250.00 USDC</span></span>
+                        </div>
+
+                        <div class="swap-icon-container">
+                            <button class="swap-btn" id="swap-currencies">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">To</label>
+                            <div class="currency-input">
+                                <select class="currency-select" id="to-currency">
+                                    <option value="TRY">TRY</option>
+                                    <option value="USDC">USDC</option>
+                                    <option value="XLM">XLM</option>
+                                    <option value="EUR">EUR</option>
+                                </select>
+                                <input type="number" class="amount-input" id="to-amount" placeholder="0.00" value="3842.50" readonly>
+                            </div>
+                            <span class="form-hint">Exchange rate: <span id="exchange-rate">1 USDC = 38.425 TRY</span></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Recipient Address</label>
+                            <input type="text" class="text-input" id="recipient-address" placeholder="GXYZ...or username">
+                        </div>
+
+                        <!-- Privacy Toggle -->
+                        <div class="privacy-toggle-group">
+                            <div class="toggle-header">
+                                <span class="toggle-label">🛡️ Privacy Shield</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="privacy-toggle" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <p class="toggle-description">Selective disclosure: Prove compliance without revealing personal data or transaction amounts to third parties.</p>
+                        </div>
+
+                        <button class="btn btn-primary btn-lg btn-full" id="btn-send-transfer">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                            </svg>
+                            Send with AI Optimization
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AI Route Optimization Panel -->
+                <div class="glass-card route-panel-card">
+                    <div class="card-top">
+                        <h3>🤖 AI Route Optimization</h3>
+                        <span class="ai-scanning" id="ai-scanning">
+                            <span class="scan-dot"></span>
+                            Scanning
+                        </span>
+                    </div>
+
+                    <div class="route-comparison" id="route-comparison">
+                        <!-- Traditional Route -->
+                        <div class="route-option route-traditional">
+                            <div class="route-header">
+                                <span class="route-label">Traditional (SWIFT)</span>
+                                <span class="route-tag bad">Expensive</span>
+                            </div>
+                            <div class="route-details">
+                                <div class="route-detail">
+                                    <span>Fee</span>
+                                    <span class="bad-value">$7.50 (7.5%)</span>
+                                </div>
+                                <div class="route-detail">
+                                    <span>Time</span>
+                                    <span class="bad-value">2-5 days</span>
+                                </div>
+                                <div class="route-detail">
+                                    <span>Privacy</span>
+                                    <span class="bad-value">None</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NovaPay Route -->
+                        <div class="route-option route-novapay recommended">
+                            <div class="route-header">
+                                <span class="route-label">NovaPay AI Route</span>
+                                <span class="route-tag good">Recommended</span>
+                            </div>
+                            <div class="route-path" id="route-path">
+                                <div class="path-node">USDC</div>
+                                <div class="path-arrow">→</div>
+                                <div class="path-node highlight">XLM</div>
+                                <div class="path-arrow">→</div>
+                                <div class="path-node">USDC</div>
+                                <div class="path-arrow">→</div>
+                                <div class="path-node">TRY</div>
+                            </div>
+                            <div class="route-details">
+                                <div class="route-detail">
+                                    <span>Fee</span>
+                                    <span class="good-value">$0.001 (~0%)</span>
+                                </div>
+                                <div class="route-detail">
+                                    <span>Time</span>
+                                    <span class="good-value">~5 seconds</span>
+                                </div>
+                                <div class="route-detail">
+                                    <span>Privacy</span>
+                                    <span class="good-value">🛡️ Shielded</span>
+                                </div>
+                            </div>
+                            <div class="savings-banner">
+                                <span class="savings-icon">💰</span>
+                                <span>You save <strong>$7.499</strong> with NovaPay</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transfer Modal -->
+        <div class="modal-overlay" id="transfer-modal" style="display:none;">
+            <div class="modal glass-card">
+                <div class="modal-header">
+                    <h3 id="modal-title">Processing Transfer</h3>
+                    <button class="modal-close" id="modal-close">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <div class="transfer-steps" id="transfer-steps">
+                        <div class="transfer-step" data-step="1">
+                            <div class="step-icon pending">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <div class="step-info">
+                                <span class="step-name">Privacy Shield Verification</span>
+                                <span class="step-desc">Generating ZK proof...</span>
+                            </div>
+                            <span class="step-status">Pending</span>
+                        </div>
+                        <div class="transfer-step" data-step="2">
+                            <div class="step-icon pending">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4"/></svg>
+                            </div>
+                            <div class="step-info">
+                                <span class="step-name">AI Route Execution</span>
+                                <span class="step-desc">Optimizing path...</span>
+                            </div>
+                            <span class="step-status">Pending</span>
+                        </div>
+                        <div class="transfer-step" data-step="3">
+                            <div class="step-icon pending">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg>
+                            </div>
+                            <div class="step-info">
+                                <span class="step-name">Soroban Escrow Contract</span>
+                                <span class="step-desc">Locking funds...</span>
+                            </div>
+                            <span class="step-status">Pending</span>
+                        </div>
+                        <div class="transfer-step" data-step="4">
+                            <div class="step-icon pending">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                            </div>
+                            <div class="step-info">
+                                <span class="step-name">Settlement Complete</span>
+                                <span class="step-desc">Delivering funds...</span>
+                            </div>
+                            <span class="step-status">Pending</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== AI AGENT PAGE ========== -->
+    <section class="page page-agent" id="page-agent">
+        <div class="agent-container">
+            <div class="page-header">
+                <h1>🤖 Autonomous AI Agent</h1>
+                <p>Self-operating payment intelligence on the Stellar network</p>
+            </div>
+
+            <!-- Agent Status -->
+            <div class="agent-hero glass-card">
+                <div class="agent-viz">
+                    <div class="agent-orb" id="agent-orb">
+                        <div class="orb-ring orb-ring-1"></div>
+                        <div class="orb-ring orb-ring-2"></div>
+                        <div class="orb-ring orb-ring-3"></div>
+                        <div class="orb-core">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="agent-status-info">
+                        <h2 class="agent-name">NovaPay Agent v1.0</h2>
+                        <div class="agent-status-row">
+                            <span class="status-indicator active"></span>
+                            <span>Autonomous Mode — Active</span>
+                        </div>
+                        <div class="agent-uptime">Uptime: <span id="agent-uptime">00:42:17</span></div>
+                    </div>
+                </div>
+                <div class="agent-actions">
+                    <button class="btn btn-primary" id="btn-agent-start">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
+                        Start Agent
+                    </button>
+                    <button class="btn btn-outline" id="btn-agent-config">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg>
+                        Configure
+                    </button>
+                </div>
+            </div>
+
+            <!-- Agent Capabilities -->
+            <div class="agent-capabilities-grid">
+                <div class="capability-card glass-card">
+                    <div class="cap-icon">🔍</div>
+                    <h4>Market Scanner</h4>
+                    <p>Continuously monitors exchange rates across all Stellar DEX pairs and anchor bridges.</p>
+                    <div class="cap-status active">
+                        <span class="cap-dot"></span>
+                        Scanning 24 pairs
+                    </div>
+                </div>
+                <div class="capability-card glass-card">
+                    <div class="cap-icon">🧠</div>
+                    <h4>Route Optimizer</h4>
+                    <p>AI-powered pathfinding algorithm that discovers the cheapest route for any currency pair.</p>
+                    <div class="cap-status active">
+                        <span class="cap-dot"></span>
+                        3 routes cached
+                    </div>
+                </div>
+                <div class="capability-card glass-card">
+                    <div class="cap-icon">⚡</div>
+                    <h4>Auto Executor</h4>
+                    <p>Autonomously executes transfers when optimal conditions are met. No manual intervention needed.</p>
+                    <div class="cap-status active">
+                        <span class="cap-dot"></span>
+                        Ready
+                    </div>
+                </div>
+                <div class="capability-card glass-card">
+                    <div class="cap-icon">🛡️</div>
+                    <h4>Privacy Guard</h4>
+                    <p>Automatically applies selective disclosure and privacy shields to every transaction.</p>
+                    <div class="cap-status active">
+                        <span class="cap-dot"></span>
+                        Shield Active
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent Live Log -->
+            <div class="glass-card agent-log-card">
+                <div class="card-top">
+                    <h3>Agent Live Log</h3>
+                    <div class="log-controls">
+                        <button class="btn btn-sm btn-ghost" id="btn-clear-log">Clear</button>
+                        <div class="agent-pulse-indicator">
+                            <span class="pulse-dot"></span>
+                            Live
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-log" id="agent-log">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRIVACY PAGE ========== -->
+    <section class="page page-privacy" id="page-privacy">
+        <div class="privacy-container">
+            <div class="page-header">
+                <h1>🛡️ Privacy Shield</h1>
+                <p>Selective disclosure & zero-knowledge compliance</p>
+            </div>
+
+            <!-- Privacy Hero -->
+            <div class="privacy-hero glass-card">
+                <div class="privacy-viz">
+                    <div class="shield-animation" id="shield-animation">
+                        <div class="shield-layer shield-layer-1"></div>
+                        <div class="shield-layer shield-layer-2"></div>
+                        <div class="shield-layer shield-layer-3"></div>
+                        <div class="shield-core">
+                            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="privacy-hero-info">
+                    <h2>Your Data, Your Rules</h2>
+                    <p>NovaPay uses selective disclosure cryptography to let you prove regulatory compliance without revealing any personal information. Verifiers see only that you meet the requirements — nothing more.</p>
+                    <div class="privacy-badges">
+                        <span class="p-badge">Zero Knowledge</span>
+                        <span class="p-badge">Selective Disclosure</span>
+                        <span class="p-badge">On-Chain Verification</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selective Disclosure Demo -->
+            <div class="disclosure-demo">
+                <h3 class="section-title">Selective Disclosure <span class="gradient-text">Demo</span></h3>
+                
+                <div class="disclosure-grid">
+                    <!-- User Credentials -->
+                    <div class="glass-card disclosure-card">
+                        <h4>📄 Your Credential</h4>
+                        <p class="disclosure-desc">Full identity data stored locally — never shared</p>
+                        <div class="credential-fields" id="credential-fields">
+                            <div class="cred-field">
+                                <span class="cred-key">Full Name</span>
+                                <span class="cred-value blurred" id="cred-name">John Doe</span>
+                                <span class="cred-lock">🔒</span>
+                            </div>
+                            <div class="cred-field">
+                                <span class="cred-key">Date of Birth</span>
+                                <span class="cred-value blurred" id="cred-dob">1990-05-15</span>
+                                <span class="cred-lock">🔒</span>
+                            </div>
+                            <div class="cred-field">
+                                <span class="cred-key">Nationality</span>
+                                <span class="cred-value blurred" id="cred-nationality">TR</span>
+                                <span class="cred-lock">🔒</span>
+                            </div>
+                            <div class="cred-field">
+                                <span class="cred-key">KYC Level</span>
+                                <span class="cred-value" id="cred-kyc">Level 2 ✓</span>
+                                <span class="cred-unlock">🔓</span>
+                            </div>
+                            <div class="cred-field">
+                                <span class="cred-key">Age ≥ 18</span>
+                                <span class="cred-value" id="cred-age">True ✓</span>
+                                <span class="cred-unlock">🔓</span>
+                            </div>
+                            <div class="cred-field">
+                                <span class="cred-key">Sanctions Clear</span>
+                                <span class="cred-value" id="cred-sanctions">True ✓</span>
+                                <span class="cred-unlock">🔓</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="disclosure-arrow">
+                        <div class="arrow-label">ZK Proof</div>
+                        <svg width="60" height="40" viewBox="0 0 60 40">
+                            <path d="M5 20h46M45 14l6 6-6 6" stroke="url(#arrowGrad)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                            <defs><linearGradient id="arrowGrad" x1="0" y1="0" x2="60" y2="0"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
+                        </svg>
+                    </div>
+
+                    <!-- Verifier View -->
+                    <div class="glass-card disclosure-card verifier-card">
+                        <h4>🏛️ Verifier Sees</h4>
+                        <p class="disclosure-desc">Only proven claims — no personal data</p>
+                        <div class="credential-fields">
+                            <div class="cred-field disabled">
+                                <span class="cred-key">Full Name</span>
+                                <span class="cred-value redacted">██████████</span>
+                                <span class="cred-lock">🚫</span>
+                            </div>
+                            <div class="cred-field disabled">
+                                <span class="cred-key">Date of Birth</span>
+                                <span class="cred-value redacted">██████████</span>
+                                <span class="cred-lock">🚫</span>
+                            </div>
+                            <div class="cred-field disabled">
+                                <span class="cred-key">Nationality</span>
+                                <span class="cred-value redacted">██████████</span>
+                                <span class="cred-lock">🚫</span>
+                            </div>
+                            <div class="cred-field verified">
+                                <span class="cred-key">KYC Level</span>
+                                <span class="cred-value verified-val">≥ Level 2 ✓</span>
+                                <span class="cred-unlock">✅</span>
+                            </div>
+                            <div class="cred-field verified">
+                                <span class="cred-key">Age ≥ 18</span>
+                                <span class="cred-value verified-val">True ✓</span>
+                                <span class="cred-unlock">✅</span>
+                            </div>
+                            <div class="cred-field verified">
+                                <span class="cred-key">Sanctions Clear</span>
+                                <span class="cred-value verified-val">True ✓</span>
+                                <span class="cred-unlock">✅</span>
+                            </div>
+                        </div>
+                        <div class="proof-hash">
+                            <span class="hash-label">Proof Hash:</span>
+                            <code id="proof-hash">0x7f3a...b2c1</code>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-lg" id="btn-generate-proof" style="margin-top: 2rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    Generate ZK Proof
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="js/stellar.js"></script>
+    <script src="js/ai-router.js"></script>
+    <script src="js/privacy.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
